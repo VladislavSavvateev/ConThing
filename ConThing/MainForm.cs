@@ -155,6 +155,9 @@ namespace ConThing {
 				DeleteSellById(long.Parse(row.SubItems[0].Text));
 				lstSells.Items.Remove(row);
 			}
+
+			// обновим ширину столбцов
+			UpdateColumnWidth();
 		}
 		
 		/// <summary>
