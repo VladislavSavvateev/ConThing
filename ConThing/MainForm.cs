@@ -84,6 +84,8 @@ namespace ConThing {
 				menuAdd_Click(sender, e);
 			if (e.Control && e.KeyCode == Keys.K)
 				menuCatalog_Click(sender, e);
+			if (e.KeyCode == Keys.Delete)
+				DeleteSelectedSells();
 		}
 
 		/// <summary>
@@ -134,6 +136,35 @@ namespace ConThing {
 		private void UpdateColumnWidth() {
 			for (int i = 0; i < lstSells.Columns.Count; i++)
 				lstSells.Columns[i].Width = -2;
+		}
+
+		/// <summary>
+		/// Удаляет выделенные записи.
+		/// </summary>
+		private void DeleteSelectedSells() {
+			// если выделенных записей нет, выходим
+			if (lstSells.SelectedItems.Count == 0) return;
+
+			// спрашиваем подтверждение
+			if (MessageBox.Show("Вы действительно хотите удалить выделенные записи?", "*_*", 
+				MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No) return;
+
+			// для каждой выделенной линии...
+			for (int i = lstSells.SelectedItems.Count - 1; i >= 0; i--) {
+				var row = lstSells.SelectedItems[i];
+				DeleteSellById(long.Parse(row.SubItems[0].Text));
+				lstSells.Items.Remove(row);
+			}
+		}
+		
+		/// <summary>
+		/// Удаляет покупку по id.
+		/// </summary>
+		/// <param name="id">Id покупки.</param>
+		private void DeleteSellById(long id) {
+			var com = new SQLiteCommand("delete from sells where id=@Id;", connection);
+			com.Parameters.Add("@Id", DbType.Int64).Value = id;
+			com.ExecuteNonQuery();
 		}
 	}
 }
