@@ -1,5 +1,5 @@
 ﻿namespace ConThing {
-	partial class AddToCatalogForm {
+	partial class EditCatalogItemForm {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
@@ -24,20 +24,20 @@
 		/// </summary>
 		private void InitializeComponent() {
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.btnOpenImage = new System.Windows.Forms.Button();
+			this.pbImage = new System.Windows.Forms.PictureBox();
 			this.label3 = new System.Windows.Forms.Label();
 			this.numQuantity = new System.Windows.Forms.NumericUpDown();
 			this.label2 = new System.Windows.Forms.Label();
 			this.numPrice = new System.Windows.Forms.NumericUpDown();
 			this.label1 = new System.Windows.Forms.Label();
 			this.txtName = new System.Windows.Forms.TextBox();
-			this.btnAdd = new System.Windows.Forms.Button();
+			this.btnEdit = new System.Windows.Forms.Button();
 			this.btnCancel = new System.Windows.Forms.Button();
-			this.pbImage = new System.Windows.Forms.PictureBox();
-			this.btnOpenImage = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numQuantity)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numPrice)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// groupBox1
@@ -56,6 +56,26 @@
 			this.groupBox1.TabIndex = 0;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Информация о товаре";
+			// 
+			// btnOpenImage
+			// 
+			this.btnOpenImage.Location = new System.Drawing.Point(6, 223);
+			this.btnOpenImage.Name = "btnOpenImage";
+			this.btnOpenImage.Size = new System.Drawing.Size(171, 23);
+			this.btnOpenImage.TabIndex = 10;
+			this.btnOpenImage.Text = "Открыть изображение...";
+			this.btnOpenImage.UseVisualStyleBackColor = true;
+			this.btnOpenImage.Click += new System.EventHandler(this.btnOpenImage_Click);
+			// 
+			// pbImage
+			// 
+			this.pbImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.pbImage.Location = new System.Drawing.Point(6, 99);
+			this.pbImage.Name = "pbImage";
+			this.pbImage.Size = new System.Drawing.Size(171, 118);
+			this.pbImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+			this.pbImage.TabIndex = 8;
+			this.pbImage.TabStop = false;
 			// 
 			// label3
 			// 
@@ -121,15 +141,15 @@
 			this.txtName.Size = new System.Drawing.Size(99, 20);
 			this.txtName.TabIndex = 0;
 			// 
-			// btnAdd
+			// btnEdit
 			// 
-			this.btnAdd.Location = new System.Drawing.Point(105, 270);
-			this.btnAdd.Name = "btnAdd";
-			this.btnAdd.Size = new System.Drawing.Size(90, 23);
-			this.btnAdd.TabIndex = 3;
-			this.btnAdd.Text = "Добавить";
-			this.btnAdd.UseVisualStyleBackColor = true;
-			this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+			this.btnEdit.Location = new System.Drawing.Point(105, 270);
+			this.btnEdit.Name = "btnEdit";
+			this.btnEdit.Size = new System.Drawing.Size(90, 23);
+			this.btnEdit.TabIndex = 3;
+			this.btnEdit.Text = "Изменить";
+			this.btnEdit.UseVisualStyleBackColor = true;
+			this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
 			// 
 			// btnCancel
 			// 
@@ -143,46 +163,26 @@
 			this.btnCancel.UseVisualStyleBackColor = true;
 			this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
 			// 
-			// pbImage
+			// EditCatalogItemForm
 			// 
-			this.pbImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.pbImage.Location = new System.Drawing.Point(6, 99);
-			this.pbImage.Name = "pbImage";
-			this.pbImage.Size = new System.Drawing.Size(171, 118);
-			this.pbImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-			this.pbImage.TabIndex = 8;
-			this.pbImage.TabStop = false;
-			// 
-			// btnOpenImage
-			// 
-			this.btnOpenImage.Location = new System.Drawing.Point(6, 223);
-			this.btnOpenImage.Name = "btnOpenImage";
-			this.btnOpenImage.Size = new System.Drawing.Size(171, 23);
-			this.btnOpenImage.TabIndex = 10;
-			this.btnOpenImage.Text = "Открыть изображение...";
-			this.btnOpenImage.UseVisualStyleBackColor = true;
-			this.btnOpenImage.Click += new System.EventHandler(this.btnOpenImage_Click);
-			// 
-			// AddToCatalogForm
-			// 
-			this.AcceptButton = this.btnAdd;
+			this.AcceptButton = this.btnEdit;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.btnCancel;
 			this.ClientSize = new System.Drawing.Size(207, 305);
 			this.Controls.Add(this.btnCancel);
-			this.Controls.Add(this.btnAdd);
+			this.Controls.Add(this.btnEdit);
 			this.Controls.Add(this.groupBox1);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
-			this.Name = "AddToCatalogForm";
-			this.Text = "Добавить товар";
+			this.Name = "EditCatalogItemForm";
+			this.Text = "Изменить товар";
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pbImage)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numQuantity)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numPrice)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pbImage)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -196,7 +196,7 @@
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.NumericUpDown numQuantity;
 		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.Button btnAdd;
+		private System.Windows.Forms.Button btnEdit;
 		private System.Windows.Forms.Button btnCancel;
 		private System.Windows.Forms.Button btnOpenImage;
 		private System.Windows.Forms.PictureBox pbImage;

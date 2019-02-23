@@ -67,7 +67,7 @@ namespace ConThing {
 				var con = new SQLiteConnection(string.Format("Data Source={0};Version=3;db=thing;", new FileInfo(Directory.GetCurrentDirectory() + "/db/" + lstDBs.SelectedItem)));
 				con.Open();
 
-				var com = new SQLiteCommand("create table if not exists items(id integer primary key autoincrement, name text not null, price double not null, quantity int not null);" +
+				var com = new SQLiteCommand("create table if not exists items(id integer primary key autoincrement, name text not null, price double not null, quantity int not null, img_path text);" +
 					"create table if not exists sells(id integer primary key autoincrement, item_id integer not null, quantity int not null);", con);
 				com.ExecuteNonQuery();
 

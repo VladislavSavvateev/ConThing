@@ -29,7 +29,7 @@ namespace ConThing {
 		/// Происходит при нажатии на кнопку каталога.
 		/// </summary
 		private void menuCatalog_Click(object sender, EventArgs e) {
-			new CatalogForm(connection).ShowDialog();
+			new CatalogForm(connection).Show();
 		}
 
 		/// <summary>

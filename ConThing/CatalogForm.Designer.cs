@@ -24,12 +24,13 @@
 		/// </summary>
 		private void InitializeComponent() {
 			this.lstCatalog = new System.Windows.Forms.ListView();
-			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-			this.menuAdd = new System.Windows.Forms.ToolStripMenuItem();
 			this.colId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.colName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.colPrice = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.colQuantity = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+			this.menuAdd = new System.Windows.Forms.ToolStripMenuItem();
+			this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.menuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -39,7 +40,8 @@
             this.colId,
             this.colName,
             this.colPrice,
-            this.colQuantity});
+            this.colQuantity,
+            this.columnHeader1});
 			this.lstCatalog.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.lstCatalog.FullRowSelect = true;
 			this.lstCatalog.Location = new System.Drawing.Point(0, 24);
@@ -48,7 +50,25 @@
 			this.lstCatalog.TabIndex = 0;
 			this.lstCatalog.UseCompatibleStateImageBehavior = false;
 			this.lstCatalog.View = System.Windows.Forms.View.Details;
+			this.lstCatalog.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.lstCatalog_ItemSelectionChanged);
+			this.lstCatalog.DoubleClick += new System.EventHandler(this.lstCatalog_DoubleClick);
 			this.lstCatalog.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CatalogForm_KeyDown);
+			// 
+			// colId
+			// 
+			this.colId.Text = "ID";
+			// 
+			// colName
+			// 
+			this.colName.Text = "Имя";
+			// 
+			// colPrice
+			// 
+			this.colPrice.Text = "Цена";
+			// 
+			// colQuantity
+			// 
+			this.colQuantity.Text = "Количество";
 			// 
 			// menuStrip1
 			// 
@@ -67,21 +87,9 @@
 			this.menuAdd.Text = "Добавить...";
 			this.menuAdd.Click += new System.EventHandler(this.menuAdd_Click);
 			// 
-			// colId
+			// columnHeader1
 			// 
-			this.colId.Text = "ID";
-			// 
-			// colName
-			// 
-			this.colName.Text = "Имя";
-			// 
-			// colPrice
-			// 
-			this.colPrice.Text = "Цена";
-			// 
-			// colQuantity
-			// 
-			this.colQuantity.Text = "Количество";
+			this.columnHeader1.Text = "Путь до изображения";
 			// 
 			// CatalogForm
 			// 
@@ -93,6 +101,7 @@
 			this.MainMenuStrip = this.menuStrip1;
 			this.Name = "CatalogForm";
 			this.Text = "Каталог";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CatalogForm_FormClosing);
 			this.Load += new System.EventHandler(this.CatalogForm_Load);
 			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CatalogForm_KeyDown);
 			this.menuStrip1.ResumeLayout(false);
@@ -111,5 +120,6 @@
 		private System.Windows.Forms.ColumnHeader colPrice;
 		private System.Windows.Forms.ColumnHeader colQuantity;
 		private System.Windows.Forms.ToolStripMenuItem menuAdd;
+		private System.Windows.Forms.ColumnHeader columnHeader1;
 	}
 }

@@ -88,6 +88,18 @@
     <Compile Include="DBForm.Designer.cs">
       <DependentUpon>DBForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditCatalogItemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditCatalogItemForm.Designer.cs">
+      <DependentUpon>EditCatalogItemForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ItemPreviewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ItemPreviewForm.Designer.cs">
+      <DependentUpon>ItemPreviewForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +119,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DBForm.resx">
       <DependentUpon>DBForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditCatalogItemForm.resx">
+      <DependentUpon>EditCatalogItemForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ItemPreviewForm.resx">
+      <DependentUpon>ItemPreviewForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
