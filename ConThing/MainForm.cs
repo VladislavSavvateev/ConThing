@@ -51,6 +51,8 @@ namespace ConThing {
 			// если форма не вернула ok, то выходим
 			if (form.ShowDialog() != DialogResult.OK) return;
 
+			if (form.Quantity == 0) return;
+
 			// добавим покупку в БД
 
 			// создаём соединение
@@ -124,10 +126,11 @@ namespace ConThing {
 		/// </summary>
 		private void menuIncoming_Click(object sender, EventArgs e) {
 			// создаём соединение
-			var com = new SQLiteCommand("select sum(i.price*s.quantity) from sells as s join items as i on (s.item_id=i.id);", connection);
+			var com = new SQLiteCommand("select ifnull(sum(i.price*s.quantity),0.0) from sells as s join items as i on (s.item_id=i.id);", connection);
 
 			// выводим результат
-			MessageBox.Show(string.Format("Общий доход составляет {0:F2} ₽", (double)com.ExecuteScalar()), "*_*", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			var thing = (double)com.ExecuteScalar();
+			MessageBox.Show(string.Format("Прибыль: {0:F2} ₽. Доход: {1:F2} ₽. Отдал ебаному правительству: {2:F2} ₽.", thing, thing * 0.82, thing * 0.15), "*_*", MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}
 
 		/// <summary>

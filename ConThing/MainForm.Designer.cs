@@ -109,8 +109,8 @@
 			// menuIncoming
 			// 
 			this.menuIncoming.Name = "menuIncoming";
-			this.menuIncoming.Size = new System.Drawing.Size(61, 20);
-			this.menuIncoming.Text = "Доход...";
+			this.menuIncoming.Size = new System.Drawing.Size(70, 20);
+			this.menuIncoming.Text = "Финансы";
 			this.menuIncoming.Click += new System.EventHandler(this.menuIncoming_Click);
 			// 
 			// MainForm

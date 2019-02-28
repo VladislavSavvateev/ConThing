@@ -28,9 +28,13 @@
 			this.colName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.colPrice = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.colQuantity = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.colPath = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.colRemain = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
 			this.menuAdd = new System.Windows.Forms.ToolStripMenuItem();
-			this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.menuHowMuch = new System.Windows.Forms.ToolStripMenuItem();
+			this.menuRefresh = new System.Windows.Forms.ToolStripMenuItem();
+			this.menuReinvent = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -41,15 +45,18 @@
             this.colName,
             this.colPrice,
             this.colQuantity,
-            this.columnHeader1});
+            this.colPath,
+            this.colRemain});
 			this.lstCatalog.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.lstCatalog.FullRowSelect = true;
 			this.lstCatalog.Location = new System.Drawing.Point(0, 24);
 			this.lstCatalog.Name = "lstCatalog";
 			this.lstCatalog.Size = new System.Drawing.Size(467, 349);
+			this.lstCatalog.Sorting = System.Windows.Forms.SortOrder.Ascending;
 			this.lstCatalog.TabIndex = 0;
 			this.lstCatalog.UseCompatibleStateImageBehavior = false;
 			this.lstCatalog.View = System.Windows.Forms.View.Details;
+			this.lstCatalog.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lstCatalog_ColumnClick);
 			this.lstCatalog.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.lstCatalog_ItemSelectionChanged);
 			this.lstCatalog.DoubleClick += new System.EventHandler(this.lstCatalog_DoubleClick);
 			this.lstCatalog.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CatalogForm_KeyDown);
@@ -70,10 +77,21 @@
 			// 
 			this.colQuantity.Text = "Количество";
 			// 
+			// colPath
+			// 
+			this.colPath.Text = "Путь до изображения";
+			// 
+			// colRemain
+			// 
+			this.colRemain.Text = "Остаток";
+			// 
 			// menuStrip1
 			// 
 			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuAdd});
+            this.menuAdd,
+            this.menuHowMuch,
+            this.menuRefresh,
+            this.menuReinvent});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
 			this.menuStrip1.Size = new System.Drawing.Size(467, 24);
@@ -87,9 +105,26 @@
 			this.menuAdd.Text = "Добавить...";
 			this.menuAdd.Click += new System.EventHandler(this.menuAdd_Click);
 			// 
-			// columnHeader1
+			// menuHowMuch
 			// 
-			this.columnHeader1.Text = "Путь до изображения";
+			this.menuHowMuch.Name = "menuHowMuch";
+			this.menuHowMuch.Size = new System.Drawing.Size(162, 20);
+			this.menuHowMuch.Text = "Сколько стоит это добро?";
+			this.menuHowMuch.Click += new System.EventHandler(this.menuHowMuch_Click);
+			// 
+			// menuRefresh
+			// 
+			this.menuRefresh.Name = "menuRefresh";
+			this.menuRefresh.Size = new System.Drawing.Size(73, 20);
+			this.menuRefresh.Text = "Обновить";
+			this.menuRefresh.Click += new System.EventHandler(this.menuRefresh_Click);
+			// 
+			// menuReinvent
+			// 
+			this.menuReinvent.Name = "menuReinvent";
+			this.menuReinvent.Size = new System.Drawing.Size(130, 20);
+			this.menuReinvent.Text = "Реинвентаризация...";
+			this.menuReinvent.Click += new System.EventHandler(this.menuInvent_Click);
 			// 
 			// CatalogForm
 			// 
@@ -120,6 +155,10 @@
 		private System.Windows.Forms.ColumnHeader colPrice;
 		private System.Windows.Forms.ColumnHeader colQuantity;
 		private System.Windows.Forms.ToolStripMenuItem menuAdd;
-		private System.Windows.Forms.ColumnHeader columnHeader1;
+		private System.Windows.Forms.ColumnHeader colPath;
+		private System.Windows.Forms.ToolStripMenuItem menuHowMuch;
+		private System.Windows.Forms.ColumnHeader colRemain;
+		private System.Windows.Forms.ToolStripMenuItem menuRefresh;
+		private System.Windows.Forms.ToolStripMenuItem menuReinvent;
 	}
 }

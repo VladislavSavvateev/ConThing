@@ -15,14 +15,20 @@ namespace ConThing {
 	/// Форма для выбора БД.
 	/// </summary>
 	public partial class DBForm : Form {
+		private static DBForm CurrentInstance;
+
 		public DBForm() {
 			InitializeComponent();
+
+			CurrentInstance = this;
 		}
 
 		/// <summary>
 		/// Происходит при загрузке формы.
 		/// </summary>
 		private void DBForm_Load(object sender, EventArgs e) {
+			lstDBs.Items.Clear();
+
 			// получаем все файлы БД
 			var thing = Directory.GetFiles(Directory.GetCurrentDirectory() + "/db", "*.db", SearchOption.TopDirectoryOnly);
 
@@ -46,7 +52,7 @@ namespace ConThing {
 			if (sfd.ShowDialog() != DialogResult.OK) return;
 
 			// создаём файл
-			File.Create(sfd.FileName);
+			File.Create(sfd.FileName).Close();
 
 			// выполняем обновление списка БД
 			DBForm_Load(sender, e);
@@ -63,18 +69,25 @@ namespace ConThing {
 			}
 
 			// пытаемся открыть БД
-			try {
-				var con = new SQLiteConnection(string.Format("Data Source={0};Version=3;db=thing;", new FileInfo(Directory.GetCurrentDirectory() + "/db/" + lstDBs.SelectedItem)));
-				con.Open();
-
-				var com = new SQLiteCommand("create table if not exists items(id integer primary key autoincrement, name text not null, price double not null, quantity int not null, img_path text);" +
-					"create table if not exists sells(id integer primary key autoincrement, item_id integer not null, quantity int not null);", con);
-				com.ExecuteNonQuery();
-
-				new MainForm(con).ShowDialog();
-			} catch (Exception ex) {
+			try { new MainForm(CreateDB((string)lstDBs.SelectedItem)).ShowDialog(); }
+			catch (Exception ex) {
 				MessageBox.Show("Произошла ошибка. " + ex.Message, "*_*", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
+}
+
+		public static SQLiteConnection CreateDB(string fileName) {
+			var con = new SQLiteConnection(string.Format("Data Source={0};Version=3;db=thing;", new FileInfo(Directory.GetCurrentDirectory() + "/db/" + fileName)));
+			con.Open();
+
+			var com = new SQLiteCommand("create table if not exists items(id integer primary key autoincrement, name text not null, price double not null, quantity int not null, img_path text);" +
+				"create table if not exists sells(id integer primary key autoincrement, item_id integer not null, quantity int not null);", con);
+			com.ExecuteNonQuery();
+
+			return con;
+		}
+		
+		public static void ReloadList() {
+			CurrentInstance?.DBForm_Load(null, null);
 		}
 	}
 }

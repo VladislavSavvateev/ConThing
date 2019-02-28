@@ -42,7 +42,7 @@ namespace ConThing {
 			// получим все элементы
 
 			// создаём команду
-			var com = new SQLiteCommand("select * from items;", connection);
+			var com = new SQLiteCommand("select *,items.quantity - ifnull((select sum(quantity) from sells where sells.item_id=items.id),0) from items;", connection);
 
 			// инициализируем считыватель
 			var reader = com.ExecuteReader();
@@ -50,7 +50,9 @@ namespace ConThing {
 			// пока в считывателе есть записи...
 			while (reader.Read()) {
 				// добавляем их в комбо
-				cmbItems.Items.Add(new Item(reader));
+				var item = new Item(reader);
+				if (item.Remain != 0)
+					cmbItems.Items.Add(new Item(reader));
 			}
 
 			// закрываем считыватель
@@ -78,6 +80,9 @@ namespace ConThing {
 		private void Recalculate() {
 			// если элемент не выбран, уходим
 			if (cmbItems.SelectedItem == null) return;
+
+			// выставить максимум по оставшемуся
+			numQuantity.Maximum = SelectedItem.Remain;
 			
 			// пересчитываем стоимость
 			txtTotal.Text = string.Format("{0:F2} ₽", SelectedItem.Price * (double)numQuantity.Value);
@@ -106,12 +111,14 @@ namespace ConThing {
 			public string Name { get; }
 			public double Price { get; }
 			public int Quantity { get; }
+			public long Remain { get; }
 
 			public Item(SQLiteDataReader reader) {
 				Id = (long)reader[0];
 				Name = (string)reader[1];
 				Price = (double)reader[2];
 				Quantity = (int)reader[3];
+				Remain = (long)reader[5];
 			}
 
 			public override string ToString() {
